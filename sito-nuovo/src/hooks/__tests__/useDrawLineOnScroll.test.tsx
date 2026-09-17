@@ -1,11 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook } from "@testing-library/react";
 
-const setMock = vi.fn();
-const toMock = vi.fn(() => ({ scrollTrigger: { kill: vi.fn() }, kill: vi.fn() }));
+const { setMock, toMock } = vi.hoisted(() => ({
+  setMock: vi.fn(),
+  toMock: vi.fn(() => ({ scrollTrigger: { kill: vi.fn() }, kill: vi.fn() })),
+}));
 
 vi.mock("@/lib/gsap", () => ({
-  gsap: { set: (...args: unknown[]) => setMock(...args), to: (...args: unknown[]) => toMock(...args) },
+  gsap: { set: setMock, to: toMock },
 }));
 
 import { useDrawLineOnScroll } from "@/hooks/useDrawLineOnScroll";
