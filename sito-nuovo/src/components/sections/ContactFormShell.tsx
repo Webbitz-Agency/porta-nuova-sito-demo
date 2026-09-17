@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 interface ContactFormShellProps {
   phone: string;
   whatsapp: string;
@@ -7,11 +9,16 @@ interface ContactFormShellProps {
 }
 
 export function ContactFormShell({ phone, whatsapp, email }: ContactFormShellProps) {
+  const [sent, setSent] = useState(false);
+
   return (
     <div className="grid gap-10 md:grid-cols-2">
       <form
         aria-label="form"
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={(e) => {
+          e.preventDefault();
+          setSent(true);
+        }}
         className="flex flex-col gap-4 rounded-2xl border border-line bg-cream p-6"
       >
         <label className="text-sm text-ink" htmlFor="nome">
@@ -42,9 +49,15 @@ export function ContactFormShell({ phone, whatsapp, email }: ContactFormShellPro
           <input id="privacy" name="privacy" type="checkbox" />
           Ho letto e accetto Privacy and Cookie Policy
         </label>
-        <button type="submit" className="mt-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-navy">
-          Invia
-        </button>
+        {sent ? (
+          <p className="mt-2 rounded-lg bg-sage/10 px-4 py-3 text-sm font-semibold text-sage">
+            Messaggio inviato — ti risponderemo al più presto.
+          </p>
+        ) : (
+          <button type="submit" className="mt-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-navy">
+            Invia
+          </button>
+        )}
       </form>
 
       <div className="flex flex-col justify-center gap-4">
