@@ -9,7 +9,7 @@ describe("SiteChrome", () => {
         <p>Contenuto di pagina</p>
       </SiteChrome>
     );
-    expect(screen.getByText(/Studio Legale Porta Nuova/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Studio Legale Porta Nuova/i })).toBeInTheDocument();
     expect(screen.getByText("Contenuto di pagina")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /345 4616191/ })).toBeInTheDocument();
   });
