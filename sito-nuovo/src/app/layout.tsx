@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -26,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
       <body className={`${fraunces.variable} ${inter.variable} font-body antialiased`}>
-        {children}
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
