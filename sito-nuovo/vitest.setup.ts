@@ -24,5 +24,5 @@ if (!window.IntersectionObserver) {
       return [];
     }
     unobserve() {}
-  } as any;
+  } as unknown as typeof window.IntersectionObserver;
 }

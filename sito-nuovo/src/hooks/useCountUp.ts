@@ -19,7 +19,7 @@ export function useCountUp(
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (prefersReducedMotion) {
-      setValue(target);
+      queueMicrotask(() => setValue(target));
       return;
     }
 
