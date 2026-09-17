@@ -1,0 +1,60 @@
+"use client";
+
+interface ContactFormShellProps {
+  phone: string;
+  whatsapp: string;
+  email?: string;
+}
+
+export function ContactFormShell({ phone, whatsapp, email }: ContactFormShellProps) {
+  return (
+    <div className="grid gap-10 md:grid-cols-2">
+      <form
+        aria-label="form"
+        onSubmit={(e) => e.preventDefault()}
+        className="flex flex-col gap-4 rounded-2xl border border-line bg-cream p-6"
+      >
+        <label className="text-sm text-ink" htmlFor="nome">
+          Nome
+          <input id="nome" name="nome" type="text" className="mt-1 w-full rounded-lg border border-line px-3 py-2" />
+        </label>
+        <label className="text-sm text-ink" htmlFor="email">
+          Email
+          <input id="email" name="email" type="email" className="mt-1 w-full rounded-lg border border-line px-3 py-2" />
+        </label>
+        <label className="text-sm text-ink" htmlFor="oggetto">
+          Oggetto
+          <input id="oggetto" name="oggetto" type="text" className="mt-1 w-full rounded-lg border border-line px-3 py-2" />
+        </label>
+        <label className="text-sm text-ink" htmlFor="telefono">
+          Telefono
+          <input id="telefono" name="telefono" type="tel" className="mt-1 w-full rounded-lg border border-line px-3 py-2" />
+        </label>
+        <label className="text-sm text-ink" htmlFor="messaggio">
+          Messaggio
+          <textarea id="messaggio" name="messaggio" rows={4} className="mt-1 w-full rounded-lg border border-line px-3 py-2" />
+        </label>
+        <label className="flex items-center gap-2 text-xs text-ink/70" htmlFor="informativa">
+          <input id="informativa" name="informativa" type="checkbox" />
+          Ho preso visione dell&apos;Informativa
+        </label>
+        <label className="flex items-center gap-2 text-xs text-ink/70" htmlFor="privacy">
+          <input id="privacy" name="privacy" type="checkbox" />
+          Ho letto e accetto Privacy and Cookie Policy
+        </label>
+        <button type="submit" className="mt-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-navy">
+          Invia
+        </button>
+      </form>
+
+      <div className="flex flex-col justify-center gap-4">
+        <p className="text-sm text-ink/80">
+          Il gratuito patrocinio non è applicabile per prestazioni di consulenza o assistenza stragiudiziale.
+        </p>
+        <p className="font-heading text-lg text-navy">{phone}</p>
+        <p className="text-sm text-ink/70">WhatsApp: {whatsapp}</p>
+        {email && <p className="text-sm text-ink/70">{email}</p>}
+      </div>
+    </div>
+  );
+}
