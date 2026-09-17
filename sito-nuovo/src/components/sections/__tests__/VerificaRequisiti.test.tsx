@@ -28,4 +28,30 @@ describe("VerificaRequisiti", () => {
     );
     expect(screen.getByRole("link", { name: /Parla con lo studio/i })).toHaveAttribute("href", "/contatti/");
   });
+
+  it("shows the negative-outcome result and can restart when the first answer is No", async () => {
+    const user = userEvent.setup();
+    render(<VerificaRequisiti resultHref="/contatti/" />);
+
+    await user.click(screen.getByRole("button", { name: "No" }));
+
+    await waitFor(
+      () => expect(screen.getByText(/procedimento/i)).toBeInTheDocument(),
+      { timeout: 1000 }
+    );
+    await user.click(screen.getByRole("button", { name: "Sì" }));
+
+    await waitFor(
+      () => expect(screen.getByText(/Verifica in corso/i)).toBeInTheDocument(),
+      { timeout: 1000 }
+    );
+
+    await waitFor(
+      () => expect(screen.getByText(/potresti non rientrare/i)).toBeInTheDocument(),
+      { timeout: 2000 }
+    );
+
+    await user.click(screen.getByRole("button", { name: "Ricomincia" }));
+    expect(screen.getByText(/reddito annuo/i)).toBeInTheDocument();
+  });
 });
