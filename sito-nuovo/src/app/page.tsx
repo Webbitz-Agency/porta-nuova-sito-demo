@@ -24,7 +24,10 @@ export default function HomePage() {
 
       <section className="py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="mx-auto max-w-2xl text-center text-ink/80">{home.intro}</p>
+          <h2 className="text-center font-heading text-2xl font-semibold text-navy">
+            Aree di assistenza
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-center text-ink/80">{home.intro}</p>
           <div className="mt-12">
             <ServiceCardGrid cards={home.services} />
           </div>
