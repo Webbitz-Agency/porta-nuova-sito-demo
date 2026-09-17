@@ -15,7 +15,7 @@ interface StatsBlockProps {
 function StatItem({ stat }: { stat: Stat }) {
   const { ref, value } = useCountUp(stat.value);
   return (
-    <div ref={ref as React.RefObject<HTMLDivElement>} className="text-center">
+    <div ref={ref as React.RefObject<HTMLDivElement>} className="min-w-[140px] text-center">
       <p className="font-heading text-4xl font-semibold text-gold">
         {value}
         {stat.suffix ?? ""}
@@ -27,7 +27,7 @@ function StatItem({ stat }: { stat: Stat }) {
 
 export function StatsBlock({ stats }: StatsBlockProps) {
   return (
-    <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+    <div className="flex flex-wrap justify-center gap-8">
       {stats.map((stat) => (
         <StatItem key={stat.label} stat={stat} />
       ))}
