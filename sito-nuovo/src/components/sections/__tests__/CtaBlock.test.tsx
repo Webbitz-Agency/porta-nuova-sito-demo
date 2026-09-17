@@ -11,7 +11,7 @@ describe("CtaBlock", () => {
 
   it("shows a fake success state after clicking 'Prenota'", async () => {
     vi.useFakeTimers();
-    const user = userEvent.setup({ delay: null });
+    const user = userEvent.setup({ delay: null, advanceTimers: vi.advanceTimersByTime });
     render(<CtaBlock variant="prenota" title="Prenota una chiamata" label="Prenota" />);
 
     await user.click(screen.getByRole("button", { name: "Prenota" }));
