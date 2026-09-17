@@ -21,11 +21,18 @@ export function CtaBlock({ variant, title, description, label, href }: CtaBlockP
 
   useEffect(() => {
     if (status === "success" && checkPathRef.current) {
-      gsap.fromTo(
-        checkPathRef.current,
-        { drawSVG: "0%" },
-        { drawSVG: "100%", duration: 0.6, ease: "power2.out" }
-      );
+      const prefersReducedMotion =
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReducedMotion) {
+        gsap.set(checkPathRef.current, { drawSVG: "100%" });
+      } else {
+        gsap.fromTo(
+          checkPathRef.current,
+          { drawSVG: "0%" },
+          { drawSVG: "100%", duration: 0.6, ease: "power2.out" }
+        );
+      }
     }
   }, [status]);
 
