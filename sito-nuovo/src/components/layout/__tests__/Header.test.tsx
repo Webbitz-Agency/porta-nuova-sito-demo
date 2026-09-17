@@ -27,6 +27,9 @@ describe("Header", () => {
     render(<Header />);
     const toggle = screen.getByRole("button", { name: /Apri menu/i });
     await user.click(toggle);
-    expect(screen.getByRole("button", { name: /Chiudi menu/i })).toBeInTheDocument();
+    const closeButton = screen.getByRole("button", { name: /Chiudi menu/i });
+    expect(closeButton).toBeInTheDocument();
+    await user.click(closeButton);
+    expect(screen.queryByRole("button", { name: /Chiudi menu/i })).not.toBeInTheDocument();
   });
 });

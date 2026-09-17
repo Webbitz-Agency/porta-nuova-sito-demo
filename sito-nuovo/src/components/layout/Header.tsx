@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -25,6 +25,34 @@ const TAIL_LINKS = [
 export function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!dropdownOpen) return;
+
+    function handleOutsideClick(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [dropdownOpen]);
+
+  useEffect(() => {
+    if (!dropdownOpen && !mobileOpen) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setDropdownOpen(false);
+        setMobileOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [dropdownOpen, mobileOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-cream/90 backdrop-blur">
@@ -40,10 +68,12 @@ export function Header() {
             </Link>
           ))}
 
-          <div className="relative">
+          <div className="relative" ref={dropdownRef}>
             <button
               type="button"
               aria-expanded={dropdownOpen}
+              aria-haspopup="true"
+              aria-controls="aree-dropdown"
               onClick={() => setDropdownOpen((open) => !open)}
               className="text-sm text-ink hover:text-gold"
             >
@@ -52,6 +82,7 @@ export function Header() {
             <AnimatePresence>
               {dropdownOpen && (
                 <motion.div
+                  id="aree-dropdown"
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
@@ -78,10 +109,10 @@ export function Header() {
         <button
           type="button"
           className="md:hidden"
-          aria-label={mobileOpen ? "Chiudi menu" : "Apri menu"}
-          onClick={() => setMobileOpen((open) => !open)}
+          aria-label="Apri menu"
+          onClick={() => setMobileOpen(true)}
         >
-          {mobileOpen ? "Chiudi menu" : "Apri menu"}
+          Apri menu
         </button>
       </div>
 
@@ -91,8 +122,19 @@ export function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 top-[65px] z-40 flex flex-col gap-4 bg-cream p-6 md:hidden"
+            className="fixed inset-0 z-40 flex flex-col gap-4 bg-cream p-6 md:hidden"
           >
+            <div className="flex items-center justify-between">
+              <span className="font-heading text-lg font-semibold text-navy">Studio Legale Porta Nuova</span>
+              <button
+                type="button"
+                aria-label="Chiudi menu"
+                onClick={() => setMobileOpen(false)}
+                className="text-2xl leading-none"
+              >
+                ×
+              </button>
+            </div>
             {[...TOP_LEVEL_LINKS, ...PRACTICE_AREAS, ...TAIL_LINKS].map((link, i) => (
               <motion.div
                 key={link.href}
