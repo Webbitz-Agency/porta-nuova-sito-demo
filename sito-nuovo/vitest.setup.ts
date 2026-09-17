@@ -13,3 +13,16 @@ if (!window.matchMedia) {
     dispatchEvent: () => true,
   } as MediaQueryList);
 }
+
+// Mock IntersectionObserver for framer-motion viewport features
+if (!window.IntersectionObserver) {
+  window.IntersectionObserver = class IntersectionObserver {
+    constructor() {}
+    disconnect() {}
+    observe() {}
+    takeRecords() {
+      return [];
+    }
+    unobserve() {}
+  } as any;
+}
