@@ -18,6 +18,7 @@ const STUDIO_LINKS = [
   { label: "Come funziona", href: "/gratuito-patrocinio-milano/" },
   { label: "Requisiti", href: "/requisiti-per-accedere/" },
   { label: "Guide", href: "/guide/" },
+  { label: "Blog", href: "/blog/" },
   { label: "Contatti", href: "/contatti/" },
 ];
 

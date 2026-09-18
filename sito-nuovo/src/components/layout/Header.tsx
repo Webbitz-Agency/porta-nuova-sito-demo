@@ -21,6 +21,7 @@ const PRACTICE_AREAS = [
 const TAIL_LINKS = [
   { label: "Lo studio", href: "/studio-legale-porta-nuova/" },
   { label: "Guide", href: "/guide/" },
+  { label: "Blog", href: "/blog/" },
 ];
 
 const CONTATTI_LINK = { label: "Contatti", href: "/contatti/" };

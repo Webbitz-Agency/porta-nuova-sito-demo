@@ -61,6 +61,16 @@ export interface GuideItem {
   excerpt: string;
 }
 
+export interface BlogPost {
+  slug: string;
+  title: string;
+  date: string;
+  isoDate: string;
+  excerpt: string;
+  image: { src: string; alt: string };
+  sections: ContentSection[];
+}
+
 export interface ContattiContent {
   phone: string;
   whatsapp: string;
