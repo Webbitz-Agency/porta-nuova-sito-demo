@@ -39,7 +39,7 @@ export function ProcessStepBar({ eyebrow, heading, steps }: ProcessStepBarProps)
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.55, delay: i * 0.18, ease: "easeOut" }}
-              className="flex w-44 shrink-0 flex-col items-center text-center"
+              className="flex w-56 shrink-0 flex-col items-center text-center"
             >
               <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-navy font-heading text-xl font-bold text-cream ring-4 ring-cream shadow-lg shadow-navy/20">
                 {step.number}
