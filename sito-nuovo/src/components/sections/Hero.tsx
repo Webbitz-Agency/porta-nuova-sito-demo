@@ -58,7 +58,7 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
           {primaryCta && (
             <Link
               href={primaryCta.href}
-              className="rounded-md bg-gold px-7 py-4 font-heading text-base font-semibold tracking-wide text-navy shadow-lg shadow-gold/25 hover:bg-gold-dark"
+              className="rounded-md bg-gold px-7 py-4 font-heading text-base font-semibold tracking-wide text-cream shadow-lg shadow-gold/25 hover:bg-gold-dark"
             >
               {primaryCta.label}
             </Link>
@@ -79,8 +79,22 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
   return (
     <section className={`relative overflow-hidden ${isHome ? "py-24 md:py-32" : "py-16 md:py-20"} bg-navy text-cream`}>
       <AnimatedBackground variant={isHome ? "hero" : "subtle"} />
-      <div className="pointer-events-none absolute -right-24 -top-32 hidden h-[420px] w-[420px] rounded-full border border-gold/20 md:block" />
-      <div className="pointer-events-none absolute -right-8 -top-16 hidden h-[420px] w-[420px] rounded-full border border-gold/10 md:block" />
+      <div className="pointer-events-none absolute -right-16 -top-16 hidden h-[420px] w-[420px] md:block">
+        <motion.div
+          className="absolute inset-0"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+        >
+          <div className="absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-[58%] -translate-y-1/2 rounded-full border border-gold/20" />
+        </motion.div>
+        <motion.div
+          className="absolute inset-0"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 65, repeat: Infinity, ease: "linear" }}
+        >
+          <div className="absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-[42%] rounded-full border border-gold/10" />
+        </motion.div>
+      </div>
 
       {isHome && image ? (
         <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -100,11 +114,15 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
               className="relative h-[420px] w-full rounded-lg object-cover shadow-2xl shadow-black/40"
             />
             <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-lg bg-cream px-5 py-4 shadow-xl shadow-black/25">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15">
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="var(--color-gold)" strokeWidth={2}>
-                  <path d="M4 12l5 5L20 6" strokeLinecap="round" strokeLinejoin="round" />
+              <Link
+                href="/requisiti-per-accedere/"
+                aria-label="Verifica ora se hai diritto al gratuito patrocinio"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold transition-transform hover:scale-105"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="var(--color-cream)" strokeWidth={2.25}>
+                  <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </div>
+              </Link>
               <div>
                 <p className="font-heading text-sm font-bold text-navy">Verifica in 2 minuti</p>
                 <p className="text-xs text-navy/60">Nessun costo per la valutazione</p>
