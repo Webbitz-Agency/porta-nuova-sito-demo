@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/Hero";
+import { SectionLines } from "@/components/motion/SectionLines";
 import { ServiceCardGrid } from "@/components/sections/ServiceCardGrid";
 import { ImageChecklist } from "@/components/sections/ImageChecklist";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
@@ -31,8 +32,9 @@ export default function HomePage() {
         image={{ src: "/images/hero-justice.jpg", alt: "Bilancia della giustizia" }}
       />
 
-      <section className="py-24">
-        <div className="mx-auto max-w-6xl px-6">
+      <section className="relative overflow-hidden py-24">
+        <SectionLines />
+        <div className="relative mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-gold">Aree di assistenza</p>
             <h2 className="mt-3 font-heading text-5xl font-semibold text-navy md:text-6xl">
