@@ -20,5 +20,23 @@ describe("ImageChecklist", () => {
     expect(screen.getByAltText("Consulenza legale")).toBeInTheDocument();
     expect(screen.getByText("Oltre 600 pratiche seguite")).toBeInTheDocument();
     expect(screen.getByText("Copertura su 9 Tribunali")).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /Chiamaci subito/i })).not.toBeInTheDocument();
+  });
+
+  it("renders a call CTA linking to tel: when callPhone is provided", () => {
+    render(
+      <ImageChecklist
+        eyebrow="Perché sceglierci"
+        heading="Esperienza concreta"
+        image={{ src: "/images/consulenza.jpg", alt: "Consulenza legale" }}
+        items={[{ title: "Oltre 600 pratiche seguite", description: "Esperienza diretta." }]}
+        callPhone="345 4616191"
+      />
+    );
+
+    expect(screen.getByRole("link", { name: /Chiamaci subito/i })).toHaveAttribute(
+      "href",
+      "tel:+393454616191"
+    );
   });
 });

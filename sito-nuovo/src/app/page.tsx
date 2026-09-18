@@ -6,6 +6,7 @@ import { ImageChecklist } from "@/components/sections/ImageChecklist";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { CtaBlock } from "@/components/sections/CtaBlock";
 import home from "@/content/home";
+import contatti from "@/content/contatti";
 
 const PROCESS_STEPS = [
   { number: 1, title: "Verifica dei requisiti reddituali", description: "Controlliamo insieme la soglia di reddito e il nucleo familiare." },
@@ -61,6 +62,7 @@ export default function HomePage() {
             heading="Esperienza concreta nel gratuito patrocinio, non solo diritto generico"
             image={{ src: "/images/consulenza.jpg", alt: "Consulenza legale allo Studio Legale Porta Nuova" }}
             items={WHY_CHOOSE_US}
+            callPhone={contatti.phone}
           />
         </div>
       </section>
