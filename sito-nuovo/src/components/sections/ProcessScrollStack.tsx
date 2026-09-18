@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { gsap } from "@/lib/gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 
 interface ProcessStep {
@@ -16,7 +16,11 @@ interface ProcessScrollStackProps {
   steps: ProcessStep[];
 }
 
-const STEP_SCROLL_DISTANCE = 500;
+// One wheel gesture = one full step transition, then input locks out until
+// the transition (+ a short buffer to swallow trackpad momentum) finishes.
+const STEP_TRANSITION_DURATION = 0.7;
+const STEP_LOCKOUT_MS = STEP_TRANSITION_DURATION * 1000 + 250;
+const PIN_DISTANCE = 200;
 
 export function ProcessScrollStack({ eyebrow, heading, steps }: ProcessScrollStackProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -36,32 +40,69 @@ export function ProcessScrollStack({ eyebrow, heading, steps }: ProcessScrollSta
     gsap.set(panels[0], { xPercent: 0, opacity: 1 });
     gsap.set(panels.slice(1), { xPercent: 100, opacity: 0 });
 
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: wrapper,
-        start: "top top+=132",
-        end: "+=" + (panels.length - 1) * STEP_SCROLL_DISTANCE,
-        scrub: 0.6,
-        pin: true,
-        anticipatePin: 1,
-        onUpdate: (self) => {
-          const step = Math.min(panels.length - 1, Math.round(self.progress * (panels.length - 1)));
-          setActiveStep(step);
-        },
+    let currentIndex = 0;
+    let animating = false;
+    let lockoutTimer: number | undefined;
+
+    function goTo(index: number, direction: 1 | -1) {
+      animating = true;
+      const current = panels[currentIndex];
+      const next = panels[index];
+      gsap.to(current, {
+        xPercent: direction * -100,
+        opacity: 0,
+        duration: STEP_TRANSITION_DURATION,
+        ease: "power2.inOut",
+      });
+      gsap.fromTo(
+        next,
+        { xPercent: direction * 100, opacity: 0 },
+        { xPercent: 0, opacity: 1, duration: STEP_TRANSITION_DURATION, ease: "power2.inOut" }
+      );
+      currentIndex = index;
+      setActiveStep(index);
+      lockoutTimer = window.setTimeout(() => {
+        animating = false;
+      }, STEP_LOCKOUT_MS);
+    }
+
+    const trigger = ScrollTrigger.create({
+      trigger: wrapper,
+      start: "top top+=132",
+      end: "+=" + PIN_DISTANCE,
+      pin: true,
+      anticipatePin: 1,
+      onEnter: () => {
+        currentIndex = 0;
+        setActiveStep(0);
+      },
+      onEnterBack: () => {
+        currentIndex = panels.length - 1;
+        setActiveStep(panels.length - 1);
       },
     });
 
-    panels.forEach((panel, i) => {
-      if (i === panels.length - 1) return;
-      const next = panels[i + 1];
-      timeline
-        .to(panel, { xPercent: -100, opacity: 0, duration: 1, ease: "power1.inOut" }, i)
-        .to(next, { xPercent: 0, opacity: 1, duration: 1, ease: "power1.inOut" }, i);
-    });
+    function onWheel(event: WheelEvent) {
+      if (!trigger.isActive) return;
+      const direction: 1 | -1 = event.deltaY > 0 ? 1 : -1;
+
+      // At either end, let the gesture fall through to a real page scroll
+      // so the section unpins naturally instead of trapping the user.
+      if (direction === 1 && currentIndex === panels.length - 1) return;
+      if (direction === -1 && currentIndex === 0) return;
+
+      event.preventDefault();
+      if (animating) return;
+
+      goTo(currentIndex + direction, direction);
+    }
+
+    window.addEventListener("wheel", onWheel, { passive: false });
 
     return () => {
-      timeline.scrollTrigger?.kill();
-      timeline.kill();
+      window.removeEventListener("wheel", onWheel);
+      if (lockoutTimer) window.clearTimeout(lockoutTimer);
+      trigger.kill();
     };
   }, [steps]);
 
