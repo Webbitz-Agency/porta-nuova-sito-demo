@@ -27,3 +27,22 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Continuous auto-scrolling row (testimonials carousel). The reduced-motion
+   block above already clamps this to a single near-instant pass. */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee-x 50s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
