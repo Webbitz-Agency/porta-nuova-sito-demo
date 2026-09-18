@@ -89,7 +89,7 @@ export default function HomePage() {
         />
       </section>
 
-      <section className="px-6 pb-24">
+      <section className="bg-beige px-6 py-24">
         <div className="mx-auto max-w-3xl">
           <CtaBlock
             variant="link"
