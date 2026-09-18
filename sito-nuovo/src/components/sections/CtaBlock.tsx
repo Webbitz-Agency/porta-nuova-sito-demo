@@ -51,18 +51,27 @@ export function CtaBlock({ variant, title, description, label, href, tone = "dar
           : "border border-line bg-navy text-cream"
       }`}
     >
-      <h3 className="font-heading text-2xl font-semibold md:text-3xl">{title}</h3>
+      <h3 className={`font-heading text-3xl font-semibold md:text-4xl ${isGold ? "text-cream" : ""}`}>{title}</h3>
       {description && <p className={`mt-2 ${isGold ? "text-navy/75" : "text-cream/80"}`}>{description}</p>}
 
       <div className="mt-7 flex min-h-[48px] items-center justify-center">
         {variant === "link" && href && (
-          <Link
-            href={href}
-            className={`px-6 py-3 font-heading text-base font-semibold tracking-wide shadow-lg ${
-              isGold ? "bg-navy text-cream hover:bg-navy/90" : "bg-gold text-navy hover:bg-gold-dark"
-            }`}
-          >
-            {label}
+          <Link href={href}>
+            <motion.span
+              animate={{
+                boxShadow: [
+                  "0 0 22px 6px rgba(171,127,56,0)",
+                  "0 0 22px 6px rgba(171,127,56,0.65)",
+                  "0 0 22px 6px rgba(171,127,56,0)",
+                ],
+              }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", times: [0, 0.5, 1] }}
+              className={`inline-flex items-center px-6 py-3 font-heading text-base font-semibold tracking-wide ${
+                isGold ? "bg-navy text-cream hover:bg-navy/90" : "bg-gold text-navy hover:bg-gold-dark"
+              }`}
+            >
+              {label}
+            </motion.span>
           </Link>
         )}
 
