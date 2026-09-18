@@ -19,7 +19,7 @@ export function ContactFormShell({ phone, whatsapp, email }: ContactFormShellPro
           e.preventDefault();
           setSent(true);
         }}
-        className="flex flex-col gap-4 rounded-2xl border border-line bg-cream p-6"
+        className="flex flex-col gap-4 rounded-lg border border-line border-t-4 border-t-gold bg-white p-7 shadow-sm shadow-navy/5"
       >
         <label className="text-sm text-ink" htmlFor="nome">
           Nome
@@ -54,7 +54,7 @@ export function ContactFormShell({ phone, whatsapp, email }: ContactFormShellPro
             Messaggio inviato — ti risponderemo al più presto.
           </p>
         ) : (
-          <button type="submit" className="mt-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-navy">
+          <button type="submit" className="mt-2 rounded-md bg-gold px-7 py-3.5 text-sm font-semibold text-navy shadow-lg shadow-gold/20 hover:bg-gold-dark">
             Invia
           </button>
         )}

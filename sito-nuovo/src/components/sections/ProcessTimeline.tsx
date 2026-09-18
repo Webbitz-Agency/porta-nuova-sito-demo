@@ -26,14 +26,14 @@ export function ProcessTimeline({ steps }: ProcessTimelineProps) {
           className="flex gap-5"
         >
           <div className="flex flex-col items-center">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-gold font-heading text-sm font-semibold text-navy">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy font-heading text-base font-bold text-gold ring-4 ring-cream">
               {step.number}
             </span>
             {i < steps.length - 1 && <AnimatedLine orientation="vertical" className="my-1" />}
           </div>
           <div className="pb-10">
             <h3 className="font-heading text-lg font-semibold text-navy">{step.title}</h3>
-            <p className="mt-1 text-sm text-ink/80">{step.description}</p>
+            <p className="mt-1 text-sm text-ink/70">{step.description}</p>
           </div>
         </motion.li>
       ))}

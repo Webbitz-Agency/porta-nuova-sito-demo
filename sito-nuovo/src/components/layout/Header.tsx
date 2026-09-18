@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -19,8 +20,9 @@ const PRACTICE_AREAS = [
 const TAIL_LINKS = [
   { label: "Lo studio", href: "/studio-legale-porta-nuova/" },
   { label: "Guide", href: "/guide/" },
-  { label: "Contatti", href: "/contatti/" },
 ];
+
+const CONTATTI_LINK = { label: "Contatti", href: "/contatti/" };
 
 export function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -55,10 +57,26 @@ export function Header() {
   }, [dropdownOpen, mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-cream/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="font-heading text-lg font-semibold text-navy">
-          Studio Legale Porta Nuova
+    <header className="sticky top-0 z-50 border-b border-line bg-cream/95">
+      <div className="hidden bg-navy py-2 text-cream md:block">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 text-xs">
+          <div className="flex items-center gap-6 opacity-85">
+            <span>345 4616191</span>
+            <span>Lun–Ven 9:00–19:00 · Milano e provincia</span>
+          </div>
+          <span className="opacity-85">Prima valutazione gratuita</span>
+        </div>
+      </div>
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/images/logo.png"
+            alt="Studio Legale Porta Nuova"
+            width={220}
+            height={51}
+            priority
+            className="h-11 w-auto"
+          />
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
@@ -104,6 +122,13 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+
+          <Link
+            href={CONTATTI_LINK.href}
+            className="rounded-md bg-gold px-5 py-2.5 text-sm font-semibold text-navy shadow-md shadow-gold/25 hover:bg-gold-dark"
+          >
+            {CONTATTI_LINK.label}
+          </Link>
         </nav>
 
         <button
@@ -125,7 +150,7 @@ export function Header() {
             className="fixed inset-0 z-40 flex flex-col gap-4 bg-cream p-6 md:hidden"
           >
             <div className="flex items-center justify-between">
-              <span className="font-heading text-lg font-semibold text-navy">Studio Legale Porta Nuova</span>
+              <Image src="/images/logo.png" alt="Studio Legale Porta Nuova" width={180} height={41} className="h-9 w-auto" />
               <button
                 type="button"
                 aria-label="Chiudi menu"
@@ -135,7 +160,7 @@ export function Header() {
                 ×
               </button>
             </div>
-            {[...TOP_LEVEL_LINKS, ...PRACTICE_AREAS, ...TAIL_LINKS].map((link, i) => (
+            {[...TOP_LEVEL_LINKS, ...PRACTICE_AREAS, ...TAIL_LINKS, CONTATTI_LINK].map((link, i) => (
               <motion.div
                 key={link.href}
                 initial={{ opacity: 0, x: -12 }}

@@ -36,9 +36,12 @@ export function ServicePageTemplate({
             <h2 className="font-heading text-2xl font-semibold text-navy">{section.heading}</h2>
             {section.body && <p className="mt-3 text-ink/80">{section.body}</p>}
             {section.items && (
-              <ul className="mt-3 list-disc space-y-1 pl-5 text-ink/80">
+              <ul className="mt-3 space-y-2">
                 {section.items.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item} className="flex items-start gap-2.5 text-ink/80">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                    {item}
+                  </li>
                 ))}
               </ul>
             )}
@@ -66,6 +69,7 @@ export function ServicePageTemplate({
         <div className="mt-14">
           <CtaBlock
             variant="link"
+            tone="gold"
             title="Hai bisogno di parlare con un avvocato?"
             description="Raccontaci la tua situazione, ti rispondiamo rapidamente."
             label="Contattaci"

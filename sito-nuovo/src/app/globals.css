@@ -1,12 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #0b2545;
-  --color-ink: #12213a;
+  /* Brand palette sampled directly from the client's real logo (charcoal + gold, not navy). */
+  --color-navy: #2e2a28;
+  --color-ink: #2e2a28;
   --color-cream: #f7f4ee;
-  --color-gold: #b8862f;
+  --color-beige: #efe9dc;
+  --color-gold: #ab7f38;
+  --color-gold-dark: #8f6a2c;
   --color-sage: #4c7a6b;
-  --color-line: #d8d2c4;
+  --color-line: #e8e2d4;
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
 }

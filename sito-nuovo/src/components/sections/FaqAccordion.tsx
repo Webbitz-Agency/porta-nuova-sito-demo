@@ -16,11 +16,16 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="mx-auto max-w-2xl divide-y divide-line">
+    <div className="mx-auto flex max-w-2xl flex-col gap-3">
       {items.map((item, i) => {
         const isOpen = openIndex === i;
         return (
-          <div key={item.question} className="py-4">
+          <div
+            key={item.question}
+            className={`rounded-lg border bg-white px-5 py-4 shadow-sm shadow-navy/5 transition-colors ${
+              isOpen ? "border-gold/50" : "border-line"
+            }`}
+          >
             <button
               type="button"
               className="flex w-full items-center justify-between text-left"

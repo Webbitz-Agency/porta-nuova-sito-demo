@@ -1,12 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Header } from "@/components/layout/Header";
 
 describe("Header", () => {
-  it("renders the studio name and top-level nav links", () => {
+  it("renders the studio logo and top-level nav links", () => {
     render(<Header />);
-    expect(screen.getByText(/Studio Legale Porta Nuova/i)).toBeInTheDocument();
+    expect(screen.getByAltText(/Studio Legale Porta Nuova/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Lo studio/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /^Guide$/i })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Contatti/i })).toBeInTheDocument();
@@ -30,6 +30,8 @@ describe("Header", () => {
     const closeButton = screen.getByRole("button", { name: /Chiudi menu/i });
     expect(closeButton).toBeInTheDocument();
     await user.click(closeButton);
-    expect(screen.queryByRole("button", { name: /Chiudi menu/i })).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryByRole("button", { name: /Chiudi menu/i })).not.toBeInTheDocument();
+    });
   });
 });

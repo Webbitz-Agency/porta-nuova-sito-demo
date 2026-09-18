@@ -40,11 +40,19 @@ export function ServiceCardGrid({ cards }: ServiceCardGridProps) {
           >
             <Link
               href={card.href}
-              className="group block h-full rounded-2xl border border-line bg-cream p-6 transition-colors hover:border-gold"
+              className="group block h-full rounded-lg border border-line border-t-4 border-t-gold bg-white p-7 shadow-sm shadow-navy/5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy/10"
             >
-              <Icon className="h-10 w-10 text-navy group-hover:text-gold" />
-              <h3 className="mt-4 font-heading text-lg font-semibold text-navy">{card.title}</h3>
-              <p className="mt-2 text-sm text-ink/80">{card.description}</p>
+              <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-navy p-3">
+                <Icon className="h-6 w-6 text-gold" />
+              </span>
+              <h3 className="mt-5 font-heading text-lg font-semibold text-navy">{card.title}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-ink/70">{card.description}</p>
+              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold">
+                Scopri di più
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth={2.5}>
+                  <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
             </Link>
           </motion.div>
         );

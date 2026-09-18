@@ -18,6 +18,8 @@ describe("Footer", () => {
 
   it("does not fabricate a street address, only city-level coverage", () => {
     render(<Footer phone="345 4616191" whatsapp="+393454616191" email="info@example.com" />);
-    expect(screen.getByText(/Milano/)).toBeInTheDocument();
+    const milanoMentions = screen.getAllByText(/Milano/);
+    expect(milanoMentions.length).toBeGreaterThan(0);
+    expect(screen.queryByText(/\d+,?\s*(via|corso|piazza|viale)\s/i)).not.toBeInTheDocument();
   });
 });

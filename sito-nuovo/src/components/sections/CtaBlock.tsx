@@ -11,11 +11,13 @@ interface CtaBlockProps {
   description?: string;
   label: string;
   href?: string;
+  tone?: "dark" | "gold";
 }
 
 type BookingStatus = "idle" | "loading" | "success";
 
-export function CtaBlock({ variant, title, description, label, href }: CtaBlockProps) {
+export function CtaBlock({ variant, title, description, label, href, tone = "dark" }: CtaBlockProps) {
+  const isGold = tone === "gold";
   const [status, setStatus] = useState<BookingStatus>("idle");
   const checkPathRef = useRef<SVGPathElement | null>(null);
 
@@ -42,13 +44,24 @@ export function CtaBlock({ variant, title, description, label, href }: CtaBlockP
   }
 
   return (
-    <div className="rounded-2xl border border-line bg-navy px-8 py-10 text-center text-cream">
-      <h3 className="font-heading text-2xl font-semibold">{title}</h3>
-      {description && <p className="mt-2 text-cream/80">{description}</p>}
+    <div
+      className={`rounded-lg px-8 py-12 text-center ${
+        isGold
+          ? "bg-gradient-to-br from-gold to-gold-dark text-navy shadow-xl shadow-gold/20"
+          : "border border-line bg-navy text-cream"
+      }`}
+    >
+      <h3 className="font-heading text-2xl font-semibold md:text-3xl">{title}</h3>
+      {description && <p className={`mt-2 ${isGold ? "text-navy/75" : "text-cream/80"}`}>{description}</p>}
 
-      <div className="mt-6 flex min-h-[48px] items-center justify-center">
+      <div className="mt-7 flex min-h-[48px] items-center justify-center">
         {variant === "link" && href && (
-          <Link href={href} className="rounded-full bg-gold px-6 py-3 text-sm font-semibold text-navy">
+          <Link
+            href={href}
+            className={`rounded-md px-7 py-4 text-sm font-semibold shadow-lg ${
+              isGold ? "bg-navy text-cream hover:bg-navy/90" : "bg-gold text-navy hover:bg-gold-dark"
+            }`}
+          >
             {label}
           </Link>
         )}
@@ -57,7 +70,9 @@ export function CtaBlock({ variant, title, description, label, href }: CtaBlockP
           <button
             type="button"
             onClick={handleClick}
-            className="rounded-full bg-gold px-6 py-3 text-sm font-semibold text-navy"
+            className={`rounded-md px-7 py-4 text-sm font-semibold shadow-lg ${
+              isGold ? "bg-navy text-cream hover:bg-navy/90" : "bg-gold text-navy hover:bg-gold-dark"
+            }`}
           >
             {label}
           </button>

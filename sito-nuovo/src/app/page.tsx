@@ -1,8 +1,23 @@
 import { Hero } from "@/components/sections/Hero";
 import { StatsBlock } from "@/components/sections/StatsBlock";
 import { ServiceCardGrid } from "@/components/sections/ServiceCardGrid";
+import { ImageChecklist } from "@/components/sections/ImageChecklist";
+import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { CtaBlock } from "@/components/sections/CtaBlock";
 import home from "@/content/home";
+
+const PROCESS_STEPS = [
+  { number: 1, title: "Verifica dei requisiti reddituali", description: "Controlliamo insieme la soglia di reddito e il nucleo familiare." },
+  { number: 2, title: "Nomina dell'avvocato", description: "Scegli un avvocato iscritto negli elenchi del gratuito patrocinio." },
+  { number: 3, title: "Deposito dell'istanza", description: "Presentiamo l'istanza di ammissione al Consiglio dell'Ordine competente." },
+  { number: 4, title: "Decreto di ammissione", description: "Attendiamo il decreto e avviamo l'assistenza legale." },
+];
+
+const WHY_CHOOSE_US = [
+  { title: "Oltre 600 pratiche seguite", description: "Esperienza diretta e consolidata nel patrocinio a spese dello Stato." },
+  { title: "Copertura su 9 Tribunali", description: "Milano, Monza, Lodi, Pavia, Como, Busto Arsizio, Varese, Bergamo, Brescia." },
+  { title: "Videoconsulenza disponibile", description: "Prima valutazione anche a distanza, per chi non può raggiungere lo studio." },
+];
 
 export default function HomePage() {
   return (
@@ -14,32 +29,62 @@ export default function HomePage() {
         subtitle={home.subtitle}
         primaryCta={{ label: "Verifica i requisiti", href: "/requisiti-per-accedere/" }}
         secondaryCta={{ label: "Scrivi su WhatsApp", href: "https://wa.me/393454616191" }}
+        image={{ src: "/images/hero-justice.jpg", alt: "Bilancia della giustizia" }}
       />
 
-      <section className="bg-navy py-16 text-cream">
+      <section className="bg-navy py-14 text-cream">
         <div className="mx-auto max-w-4xl px-6">
           <StatsBlock stats={home.stats} />
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center font-heading text-2xl font-semibold text-navy">
-            Aree di assistenza
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-ink/80">{home.intro}</p>
-          <div className="mt-12">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-gold">Aree di assistenza</p>
+            <h2 className="mt-3 font-heading text-3xl font-semibold text-navy md:text-4xl">
+              Un supporto legale completo, senza costi se hai diritto
+            </h2>
+            <p className="mt-4 text-ink/70">{home.intro}</p>
+          </div>
+          <div className="mt-14">
             <ServiceCardGrid cards={home.services} />
           </div>
         </div>
       </section>
 
-      <section className="pb-20">
-        <div className="mx-auto max-w-2xl px-6">
+      <section className="bg-beige py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <ImageChecklist
+            eyebrow="Perché sceglierci"
+            heading="Esperienza concreta nel gratuito patrocinio, non solo diritto generico"
+            image={{ src: "/images/consulenza.jpg", alt: "Consulenza legale allo Studio Legale Porta Nuova" }}
+            items={WHY_CHOOSE_US}
+          />
+        </div>
+      </section>
+
+      <section className="py-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="mx-auto max-w-xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-gold">Come funziona</p>
+            <h2 className="mt-3 font-heading text-3xl font-semibold text-navy md:text-4xl">
+              Quattro passaggi verso l&apos;assistenza gratuita
+            </h2>
+          </div>
+          <div className="mt-14">
+            <ProcessTimeline steps={PROCESS_STEPS} />
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 pb-24">
+        <div className="mx-auto max-w-3xl">
           <CtaBlock
             variant="link"
-            title="Verifica se hai diritto al gratuito patrocinio"
-            description="Rispondi a due domande rapide sulla pagina Requisiti."
+            tone="gold"
+            title="Verifica gratuitamente se hai diritto al patrocinio"
+            description="Rispondi a due domande rapide, senza impegno."
             label="Verifica ora"
             href="/requisiti-per-accedere/"
           />
