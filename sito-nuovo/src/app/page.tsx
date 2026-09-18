@@ -3,7 +3,7 @@ import { SectionLines } from "@/components/motion/SectionLines";
 import { ServiceCardGrid } from "@/components/sections/ServiceCardGrid";
 import { RequisitiPanel } from "@/components/sections/RequisitiPanel";
 import { ImageChecklist } from "@/components/sections/ImageChecklist";
-import { ProcessScrollStack } from "@/components/sections/ProcessScrollStack";
+import { ProcessStepBar } from "@/components/sections/ProcessStepBar";
 import { CtaBlock } from "@/components/sections/CtaBlock";
 import home from "@/content/home";
 import contatti from "@/content/contatti";
@@ -69,7 +69,7 @@ export default function HomePage() {
 
       <section className="py-24">
         <div className="mx-auto max-w-5xl px-6">
-          <ProcessScrollStack
+          <ProcessStepBar
             eyebrow="Come funziona"
             heading="Quattro passaggi verso l&apos;assistenza gratuita"
             steps={PROCESS_STEPS}

@@ -5,10 +5,11 @@ import { useDrawLineOnScroll } from "@/hooks/useDrawLineOnScroll";
 interface AnimatedLineProps {
   orientation?: "horizontal" | "vertical";
   className?: string;
+  delay?: number;
 }
 
-export function AnimatedLine({ orientation = "horizontal", className }: AnimatedLineProps) {
-  const pathRef = useDrawLineOnScroll<SVGPathElement>();
+export function AnimatedLine({ orientation = "horizontal", className, delay = 0 }: AnimatedLineProps) {
+  const pathRef = useDrawLineOnScroll<SVGPathElement>(delay);
   const isHorizontal = orientation === "horizontal";
 
   return (

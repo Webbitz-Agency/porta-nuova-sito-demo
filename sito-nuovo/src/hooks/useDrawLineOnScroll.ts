@@ -3,7 +3,7 @@
 import { useEffect, useRef, type RefObject } from "react";
 import { gsap } from "@/lib/gsap";
 
-export function useDrawLineOnScroll<T extends SVGPathElement>(): RefObject<T | null> {
+export function useDrawLineOnScroll<T extends SVGPathElement>(delay = 0): RefObject<T | null> {
   const pathRef = useRef<T | null>(null);
 
   useEffect(() => {
@@ -23,6 +23,7 @@ export function useDrawLineOnScroll<T extends SVGPathElement>(): RefObject<T | n
     const tween = gsap.to(path, {
       drawSVG: "100%",
       duration: 1.4,
+      delay,
       ease: "power2.out",
       scrollTrigger: {
         trigger: path,
@@ -36,7 +37,7 @@ export function useDrawLineOnScroll<T extends SVGPathElement>(): RefObject<T | n
       withTrigger.scrollTrigger?.kill();
       withTrigger.kill();
     };
-  }, []);
+  }, [delay]);
 
   return pathRef;
 }
