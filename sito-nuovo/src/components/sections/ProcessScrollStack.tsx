@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap, ScrollTrigger, Observer } from "@/lib/gsap";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 
 interface ProcessStep {
@@ -16,11 +16,13 @@ interface ProcessScrollStackProps {
   steps: ProcessStep[];
 }
 
-// One wheel gesture = one full step transition, then input locks out until
-// the transition (+ a short buffer to swallow trackpad momentum) finishes.
+// One scroll/swipe gesture = one full step transition, then input locks out
+// until it finishes. Native wheel-event preventDefault() isn't reliable
+// against trackpad momentum scrolling, so gesture capture is delegated to
+// GSAP's Observer plugin (built for exactly this "pinned slides" pattern)
+// instead of a manual wheel listener.
 const STEP_TRANSITION_DURATION = 0.7;
-const STEP_LOCKOUT_MS = STEP_TRANSITION_DURATION * 1000 + 250;
-const PIN_DISTANCE = 200;
+const PIN_DISTANCE = 1;
 
 export function ProcessScrollStack({ eyebrow, heading, steps }: ProcessScrollStackProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -42,7 +44,6 @@ export function ProcessScrollStack({ eyebrow, heading, steps }: ProcessScrollSta
 
     let currentIndex = 0;
     let animating = false;
-    let lockoutTimer: number | undefined;
 
     function goTo(index: number, direction: 1 | -1) {
       animating = true;
@@ -57,14 +58,45 @@ export function ProcessScrollStack({ eyebrow, heading, steps }: ProcessScrollSta
       gsap.fromTo(
         next,
         { xPercent: direction * 100, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: STEP_TRANSITION_DURATION, ease: "power2.inOut" }
+        {
+          xPercent: 0,
+          opacity: 1,
+          duration: STEP_TRANSITION_DURATION,
+          ease: "power2.inOut",
+          onComplete: () => {
+            animating = false;
+          },
+        }
       );
       currentIndex = index;
       setActiveStep(index);
-      lockoutTimer = window.setTimeout(() => {
-        animating = false;
-      }, STEP_LOCKOUT_MS);
     }
+
+    const observer = Observer.create({
+      target: window,
+      type: "wheel,touch,pointer",
+      preventDefault: true,
+      tolerance: 10,
+      onUp: () => {
+        if (animating) return;
+        if (currentIndex === panels.length - 1) {
+          // Already at the last step: release capture so this same gesture
+          // continues as a normal page scroll and unpins the section.
+          observer.disable();
+          return;
+        }
+        goTo(currentIndex + 1, 1);
+      },
+      onDown: () => {
+        if (animating) return;
+        if (currentIndex === 0) {
+          observer.disable();
+          return;
+        }
+        goTo(currentIndex - 1, -1);
+      },
+    });
+    observer.disable();
 
     const trigger = ScrollTrigger.create({
       trigger: wrapper,
@@ -75,33 +107,19 @@ export function ProcessScrollStack({ eyebrow, heading, steps }: ProcessScrollSta
       onEnter: () => {
         currentIndex = 0;
         setActiveStep(0);
+        observer.enable();
       },
       onEnterBack: () => {
         currentIndex = panels.length - 1;
         setActiveStep(panels.length - 1);
+        observer.enable();
       },
+      onLeave: () => observer.disable(),
+      onLeaveBack: () => observer.disable(),
     });
 
-    function onWheel(event: WheelEvent) {
-      if (!trigger.isActive) return;
-      const direction: 1 | -1 = event.deltaY > 0 ? 1 : -1;
-
-      // At either end, let the gesture fall through to a real page scroll
-      // so the section unpins naturally instead of trapping the user.
-      if (direction === 1 && currentIndex === panels.length - 1) return;
-      if (direction === -1 && currentIndex === 0) return;
-
-      event.preventDefault();
-      if (animating) return;
-
-      goTo(currentIndex + direction, direction);
-    }
-
-    window.addEventListener("wheel", onWheel, { passive: false });
-
     return () => {
-      window.removeEventListener("wheel", onWheel);
-      if (lockoutTimer) window.clearTimeout(lockoutTimer);
+      observer.kill();
       trigger.kill();
     };
   }, [steps]);
