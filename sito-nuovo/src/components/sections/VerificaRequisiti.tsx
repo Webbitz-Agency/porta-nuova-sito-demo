@@ -48,10 +48,10 @@ export function VerificaRequisiti({ resultHref }: VerificaRequisitiProps) {
           >
             <p className="font-heading text-lg text-navy">{QUESTIONS[step]}</p>
             <div className="mt-6 flex justify-center gap-4">
-              <button type="button" onClick={() => answer(true)} className="bg-gold px-6 py-2 text-sm font-semibold text-navy">
+              <button type="button" onClick={() => answer(true)} className="bg-gold px-5 py-2 text-sm font-semibold text-navy">
                 Sì
               </button>
-              <button type="button" onClick={() => answer(false)} className="border border-navy px-6 py-2 text-sm font-semibold text-navy">
+              <button type="button" onClick={() => answer(false)} className="border border-navy px-5 py-2 text-sm font-semibold text-navy">
                 No
               </button>
             </div>
@@ -87,7 +87,7 @@ export function VerificaRequisiti({ resultHref }: VerificaRequisitiProps) {
             )}
             <Link
               href={resultHref}
-              className="mt-6 inline-block bg-gold px-6 py-3 text-sm font-semibold text-navy"
+              className="mt-6 inline-block bg-gold px-5 py-2.5 text-sm font-semibold text-navy"
             >
               Parla con lo studio
             </Link>

@@ -58,7 +58,7 @@ export function CtaBlock({ variant, title, description, label, href, tone = "dar
         {variant === "link" && href && (
           <Link
             href={href}
-            className={`px-7 py-4 font-heading text-base font-semibold tracking-wide shadow-lg ${
+            className={`px-6 py-3 font-heading text-base font-semibold tracking-wide shadow-lg ${
               isGold ? "bg-navy text-cream hover:bg-navy/90" : "bg-gold text-navy hover:bg-gold-dark"
             }`}
           >
@@ -70,7 +70,7 @@ export function CtaBlock({ variant, title, description, label, href, tone = "dar
           <button
             type="button"
             onClick={handleClick}
-            className={`px-7 py-4 font-heading text-base font-semibold tracking-wide shadow-lg ${
+            className={`px-6 py-3 font-heading text-base font-semibold tracking-wide shadow-lg ${
               isGold ? "bg-navy text-cream hover:bg-navy/90" : "bg-gold text-navy hover:bg-gold-dark"
             }`}
           >

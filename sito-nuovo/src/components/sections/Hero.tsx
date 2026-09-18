@@ -58,7 +58,7 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
           {primaryCta && (
             <Link
               href={primaryCta.href}
-              className="bg-gold px-7 py-4 font-heading text-base font-semibold tracking-wide text-cream shadow-lg shadow-gold/25 hover:bg-gold-dark"
+              className="bg-gold px-6 py-3 font-heading text-base font-semibold tracking-wide text-cream shadow-lg shadow-gold/25 hover:bg-gold-dark"
             >
               {primaryCta.label}
             </Link>
@@ -66,7 +66,7 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
           {secondaryCta && (
             <Link
               href={secondaryCta.href}
-              className="border border-cream/35 px-7 py-4 font-heading text-base font-semibold tracking-wide text-cream hover:border-cream"
+              className="border border-cream/35 px-6 py-3 font-heading text-base font-semibold tracking-wide text-cream hover:border-cream"
             >
               {secondaryCta.label}
             </Link>
@@ -79,20 +79,40 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
   return (
     <section className={`relative overflow-hidden ${isHome ? "py-24 md:py-32" : "py-16 md:py-20"} bg-navy text-cream`}>
       <AnimatedBackground variant={isHome ? "hero" : "subtle"} />
-      <div className="pointer-events-none absolute -right-16 -top-16 hidden h-[420px] w-[420px] md:block">
+
+      {/* Right orbiting ring — half off-screen, spans the hero's height */}
+      <div className="pointer-events-none absolute right-0 top-1/2 hidden h-[85%] w-[85%] max-w-[620px] -translate-y-1/2 translate-x-1/2 md:block">
         <motion.div
           className="absolute inset-0"
           animate={{ rotate: 360 }}
           transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
         >
-          <div className="absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-[58%] -translate-y-1/2 rounded-full border border-gold/20" />
+          <div className="absolute left-1/2 top-1/2 h-full w-full -translate-x-[54%] -translate-y-1/2 rounded-full border border-gold/20" />
         </motion.div>
         <motion.div
           className="absolute inset-0"
           animate={{ rotate: -360 }}
           transition={{ duration: 65, repeat: Infinity, ease: "linear" }}
         >
-          <div className="absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-[42%] rounded-full border border-gold/10" />
+          <div className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-[46%] rounded-full border border-gold/10" />
+        </motion.div>
+      </div>
+
+      {/* Left orbiting ring — mirrored */}
+      <div className="pointer-events-none absolute left-0 top-1/2 hidden h-[85%] w-[85%] max-w-[620px] -translate-x-1/2 -translate-y-1/2 md:block">
+        <motion.div
+          className="absolute inset-0"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
+        >
+          <div className="absolute left-1/2 top-1/2 h-full w-full -translate-x-[46%] -translate-y-1/2 rounded-full border border-gold/15" />
+        </motion.div>
+        <motion.div
+          className="absolute inset-0"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
+        >
+          <div className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-[54%] rounded-full border border-gold/10" />
         </motion.div>
       </div>
 
@@ -127,7 +147,7 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
                   ],
                 }}
                 transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                className="flex items-center gap-3 bg-cream px-5 py-4 transition-transform hover:scale-[1.02]"
+                className="flex items-center gap-3 rounded-lg bg-cream px-5 py-4 transition-transform hover:scale-[1.02]"
               >
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="var(--color-cream)" strokeWidth={2.25}>

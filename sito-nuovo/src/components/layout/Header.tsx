@@ -204,7 +204,7 @@ export function Header() {
 
           <Link
             href={CONTATTI_LINK.href}
-            className="bg-gold px-5 py-2.5 font-heading text-base font-semibold tracking-wide text-cream shadow-md shadow-gold/25 hover:bg-gold-dark"
+            className="bg-gold px-4 py-2 font-heading text-base font-semibold tracking-wide text-cream shadow-md shadow-gold/25 hover:bg-gold-dark"
           >
             {CONTATTI_LINK.label}
           </Link>
