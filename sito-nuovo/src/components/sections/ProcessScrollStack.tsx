@@ -22,7 +22,12 @@ interface ProcessScrollStackProps {
 // GSAP's Observer plugin (built for exactly this "pinned slides" pattern)
 // instead of a manual wheel listener.
 const STEP_TRANSITION_DURATION = 0.7;
-const PIN_DISTANCE = 1;
+// Kept intentionally small (Observer decides advancement, not scroll
+// distance) but large enough that sub-pixel jitter from anticipatePin or a
+// layout recalculation can't push scroll position past `end` and trigger a
+// premature onLeave, which would disable the Observer and let all scroll
+// through unblocked.
+const PIN_DISTANCE = 150;
 
 export function ProcessScrollStack({ eyebrow, heading, steps }: ProcessScrollStackProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
