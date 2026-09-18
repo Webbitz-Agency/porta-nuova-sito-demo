@@ -12,7 +12,7 @@ export function IconShield({ className }: { className?: string }) {
       strokeWidth={1.75}
       strokeLinecap="round"
       strokeLinejoin="round"
-      animate={{ y: [0, -3, 0] }}
+      animate={{ y: [0, -7, 0], rotate: [0, 3, -3, 0] }}
       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       whileHover={{ scale: 1.06 }}
     >

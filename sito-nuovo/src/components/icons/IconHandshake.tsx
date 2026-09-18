@@ -12,7 +12,7 @@ export function IconHandshake({ className }: { className?: string }) {
       strokeWidth={1.75}
       strokeLinecap="round"
       strokeLinejoin="round"
-      animate={{ y: [0, -3, 0] }}
+      animate={{ y: [0, -7, 0], rotate: [0, 3, -3, 0] }}
       transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
     >
       <path d="M6 20 16 14l6 4" />

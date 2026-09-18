@@ -12,7 +12,7 @@ export function IconDocument({ className }: { className?: string }) {
       strokeWidth={1.75}
       strokeLinecap="round"
       strokeLinejoin="round"
-      animate={{ y: [0, -3, 0] }}
+      animate={{ y: [0, -7, 0], rotate: [0, 3, -3, 0] }}
       transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
     >
       <path d="M14 4h14l8 8v32H14Z" />

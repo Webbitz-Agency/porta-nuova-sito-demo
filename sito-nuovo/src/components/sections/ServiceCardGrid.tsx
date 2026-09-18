@@ -27,7 +27,7 @@ interface ServiceCardGridProps {
 
 export function ServiceCardGrid({ cards }: ServiceCardGridProps) {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="flex flex-wrap justify-center gap-6">
       {cards.map((card, i) => {
         const Icon = ICONS[card.icon];
         return (
@@ -37,21 +37,22 @@ export function ServiceCardGrid({ cards }: ServiceCardGridProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
+            className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
           >
             <Link
               href={card.href}
-              className="group flex h-full flex-col overflow-hidden rounded-lg border border-line border-t-4 border-t-gold bg-white shadow-sm shadow-navy/5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy/10"
+              className="group flex h-full flex-col rounded-lg border border-line bg-white shadow-sm shadow-navy/5 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy/10"
             >
               <div className="flex flex-1 flex-col p-7">
-                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-navy p-3">
-                  <Icon className="h-6 w-6 text-gold" />
-                </span>
+                <Icon className="h-11 w-11 text-gold" />
                 <h3 className="mt-5 font-heading text-2xl font-bold text-navy">{card.title}</h3>
                 <p className="mt-2.5 text-sm leading-relaxed text-ink/70">{card.description}</p>
+                <div className="mt-auto pt-6">
+                  <span className="block w-full bg-beige py-3 text-center text-sm font-semibold text-navy transition-colors group-hover:bg-gold group-hover:text-cream">
+                    Scopri di più
+                  </span>
+                </div>
               </div>
-              <span className="w-full bg-beige py-3 text-center text-sm font-semibold text-navy transition-colors group-hover:bg-gold group-hover:text-cream">
-                Scopri di più
-              </span>
             </Link>
           </motion.div>
         );

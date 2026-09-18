@@ -12,7 +12,7 @@ export function IconGavel({ className }: { className?: string }) {
       strokeWidth={1.75}
       strokeLinecap="round"
       strokeLinejoin="round"
-      animate={{ y: [0, -3, 0] }}
+      animate={{ y: [0, -7, 0], rotate: [0, 3, -3, 0] }}
       transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
     >
       <motion.g
