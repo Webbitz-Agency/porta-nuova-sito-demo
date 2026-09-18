@@ -28,12 +28,22 @@ export function RequisitiPanel({ title, description, href }: RequisitiPanelProps
         </span>
         <h3 className="mt-6 font-heading text-3xl font-bold text-cream">{title}</h3>
         <p className="mt-3 text-sm leading-relaxed text-cream/70">{description}</p>
-        <span className="mx-auto mt-8 inline-flex items-center gap-2 bg-gold px-6 py-3 text-sm font-semibold text-cream transition-colors group-hover:bg-gold-dark">
+        <motion.span
+          animate={{
+            boxShadow: [
+              "0 0 0 0 rgba(171,127,56,0)",
+              "0 0 22px 6px rgba(171,127,56,0.65)",
+              "0 0 0 0 rgba(171,127,56,0)",
+            ],
+          }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          className="mx-auto mt-8 inline-flex items-center gap-2 bg-gold px-6 py-3 text-sm font-semibold text-cream transition-colors group-hover:bg-gold-dark"
+        >
           Verifica ora
           <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth={2.5}>
             <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-        </span>
+        </motion.span>
       </Link>
     </motion.div>
   );
