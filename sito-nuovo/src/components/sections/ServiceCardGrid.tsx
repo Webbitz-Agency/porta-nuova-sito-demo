@@ -36,14 +36,14 @@ export function ServiceCardGrid({ cards }: ServiceCardGridProps) {
         return (
           <motion.div
             key={card.href}
-            initial={{ opacity: 0, y: 24, boxShadow: "0 0 0 0 rgba(143,106,44,0)" }}
+            initial={{ opacity: 0, y: 24, boxShadow: "0 10px 25px rgba(46,42,40,0.08)" }}
             whileInView={{
               opacity: 1,
               y: 0,
               boxShadow: [
-                "0 0 0 0 rgba(143,106,44,0)",
-                "0 0 0 1.5px rgba(143,106,44,0.45)",
-                "0 0 0 0 rgba(143,106,44,0)",
+                "0 10px 25px rgba(46,42,40,0.08)",
+                "0 18px 40px rgba(143,106,44,0.55)",
+                "0 10px 25px rgba(46,42,40,0.08)",
               ],
             }}
             viewport={{ once: true, margin: "-80px" }}
