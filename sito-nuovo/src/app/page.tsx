@@ -5,9 +5,11 @@ import { ServiceCardGrid } from "@/components/sections/ServiceCardGrid";
 import { RequisitiPanel } from "@/components/sections/RequisitiPanel";
 import { ImageChecklist } from "@/components/sections/ImageChecklist";
 import { ProcessStepBar } from "@/components/sections/ProcessStepBar";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { CtaBlock } from "@/components/sections/CtaBlock";
 import home from "@/content/home";
 import contatti from "@/content/contatti";
+import testimonials from "@/content/testimonials";
 
 const PROCESS_STEPS = [
   { number: 1, title: "Verifica dei requisiti reddituali", description: "Controlliamo insieme la soglia di reddito e il nucleo familiare." },
@@ -75,6 +77,16 @@ export default function HomePage() {
             eyebrow="Come funziona"
             heading="Quattro passaggi verso l&apos;assistenza gratuita"
             steps={PROCESS_STEPS}
+          />
+        </div>
+      </section>
+
+      <section className="bg-beige py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <Testimonials
+            eyebrow="Recensioni"
+            heading="Chi si è affidato a noi lo consiglia"
+            items={testimonials}
           />
         </div>
       </section>
