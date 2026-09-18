@@ -1,5 +1,6 @@
 import { Hero } from "@/components/sections/Hero";
 import { SectionLines } from "@/components/motion/SectionLines";
+import { OrbitingRings } from "@/components/motion/OrbitingRings";
 import { ServiceCardGrid } from "@/components/sections/ServiceCardGrid";
 import { RequisitiPanel } from "@/components/sections/RequisitiPanel";
 import { ImageChecklist } from "@/components/sections/ImageChecklist";
@@ -67,8 +68,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-24">
-        <div className="mx-auto max-w-5xl px-6">
+      <section className="relative overflow-hidden py-24">
+        <OrbitingRings tone="on-light" />
+        <div className="relative mx-auto max-w-5xl px-6">
           <ProcessStepBar
             eyebrow="Come funziona"
             heading="Quattro passaggi verso l&apos;assistenza gratuita"

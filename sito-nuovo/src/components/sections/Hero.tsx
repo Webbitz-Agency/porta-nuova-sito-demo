@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { AnimatedBackground } from "@/components/motion/AnimatedBackground";
+import { OrbitingRings } from "@/components/motion/OrbitingRings";
 
 interface HeroProps {
   variant: "home" | "secondary";
@@ -79,42 +80,7 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
   return (
     <section className={`relative overflow-hidden ${isHome ? "py-24 md:py-32" : "py-16 md:py-20"} bg-navy text-cream`}>
       <AnimatedBackground variant={isHome ? "hero" : "subtle"} />
-
-      {/* Right orbiting ring — half off-screen, spans the hero's height */}
-      <div className="pointer-events-none absolute right-0 top-1/2 hidden h-[85%] w-[85%] max-w-[620px] -translate-y-1/2 translate-x-1/2 md:block">
-        <motion.div
-          className="absolute inset-0"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-        >
-          <div className="absolute left-1/2 top-1/2 h-full w-full -translate-x-[54%] -translate-y-1/2 rounded-full border border-gold/20" />
-        </motion.div>
-        <motion.div
-          className="absolute inset-0"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 65, repeat: Infinity, ease: "linear" }}
-        >
-          <div className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-[46%] rounded-full border border-gold/10" />
-        </motion.div>
-      </div>
-
-      {/* Left orbiting ring — mirrored */}
-      <div className="pointer-events-none absolute left-0 top-1/2 hidden h-[85%] w-[85%] max-w-[620px] -translate-x-1/2 -translate-y-1/2 md:block">
-        <motion.div
-          className="absolute inset-0"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
-        >
-          <div className="absolute left-1/2 top-1/2 h-full w-full -translate-x-[46%] -translate-y-1/2 rounded-full border border-gold/15" />
-        </motion.div>
-        <motion.div
-          className="absolute inset-0"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
-        >
-          <div className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-[54%] rounded-full border border-gold/10" />
-        </motion.div>
-      </div>
+      <OrbitingRings tone="on-dark" />
 
       {isHome && image ? (
         <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr]">
