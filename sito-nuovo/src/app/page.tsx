@@ -3,7 +3,7 @@ import { SectionLines } from "@/components/motion/SectionLines";
 import { ServiceCardGrid } from "@/components/sections/ServiceCardGrid";
 import { RequisitiPanel } from "@/components/sections/RequisitiPanel";
 import { ImageChecklist } from "@/components/sections/ImageChecklist";
-import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
+import { ProcessScrollStack } from "@/components/sections/ProcessScrollStack";
 import { CtaBlock } from "@/components/sections/CtaBlock";
 import home from "@/content/home";
 import contatti from "@/content/contatti";
@@ -69,15 +69,11 @@ export default function HomePage() {
 
       <section className="py-24">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="mx-auto max-w-xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gold">Come funziona</p>
-            <h2 className="mt-3 font-heading text-3xl font-semibold text-navy md:text-4xl">
-              Quattro passaggi verso l&apos;assistenza gratuita
-            </h2>
-          </div>
-          <div className="mt-14">
-            <ProcessTimeline steps={PROCESS_STEPS} />
-          </div>
+          <ProcessScrollStack
+            eyebrow="Come funziona"
+            heading="Quattro passaggi verso l&apos;assistenza gratuita"
+            steps={PROCESS_STEPS}
+          />
         </div>
       </section>
 
