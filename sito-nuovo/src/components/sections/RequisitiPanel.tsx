@@ -31,12 +31,12 @@ export function RequisitiPanel({ title, description, href }: RequisitiPanelProps
         <motion.span
           animate={{
             boxShadow: [
-              "0 0 0 0 rgba(171,127,56,0)",
+              "0 0 22px 6px rgba(171,127,56,0)",
               "0 0 22px 6px rgba(171,127,56,0.65)",
-              "0 0 0 0 rgba(171,127,56,0)",
+              "0 0 22px 6px rgba(171,127,56,0)",
             ],
           }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", times: [0, 0.5, 1] }}
           className="mx-auto mt-8 inline-flex items-center gap-2 bg-gold px-6 py-3 text-sm font-semibold text-cream transition-colors group-hover:bg-gold-dark"
         >
           Verifica ora

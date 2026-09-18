@@ -146,7 +146,7 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
                     "0 20px 40px rgba(0,0,0,0.25)",
                   ],
                 }}
-                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", times: [0, 0.5, 1] }}
                 className="flex items-center gap-3 rounded-lg bg-cream px-5 py-4 transition-transform hover:scale-[1.02]"
               >
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold">
