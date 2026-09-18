@@ -54,7 +54,7 @@ export function ContactFormShell({ phone, whatsapp, email }: ContactFormShellPro
             Messaggio inviato — ti risponderemo al più presto.
           </p>
         ) : (
-          <button type="submit" className="mt-2 rounded-md bg-gold px-7 py-3.5 text-sm font-semibold text-navy shadow-lg shadow-gold/20 hover:bg-gold-dark">
+          <button type="submit" className="mt-2 bg-gold px-7 py-3.5 text-sm font-semibold text-navy shadow-lg shadow-gold/20 hover:bg-gold-dark">
             Invia
           </button>
         )}

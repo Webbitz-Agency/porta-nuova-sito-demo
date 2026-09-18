@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 
 const TOP_LEVEL_LINKS = [
@@ -78,6 +79,17 @@ export function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const pathname = usePathname();
+
+  function isActive(href: string) {
+    return href === "/" ? pathname === "/" : pathname?.startsWith(href);
+  }
+
+  function navLinkClassName(href: string) {
+    return `font-heading text-base font-semibold tracking-wide hover:text-gold ${
+      isActive(href) ? "text-gold underline decoration-2 underline-offset-8" : "text-ink"
+    }`;
+  }
 
   useEffect(() => {
     if (!dropdownOpen) return;
@@ -138,7 +150,7 @@ export function Header() {
 
         <nav className="hidden items-center gap-6 md:flex">
           {TOP_LEVEL_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="font-heading text-base font-semibold tracking-wide text-ink hover:text-gold">
+            <Link key={link.href} href={link.href} className={navLinkClassName(link.href)}>
               {link.label}
             </Link>
           ))}
@@ -155,7 +167,11 @@ export function Header() {
               aria-haspopup="true"
               aria-controls="aree-dropdown"
               onClick={() => setDropdownOpen(true)}
-              className="flex items-center gap-1.5 font-heading text-base font-semibold tracking-wide text-ink hover:text-gold"
+              className={`flex items-center gap-1.5 font-heading text-base font-semibold tracking-wide hover:text-gold ${
+                PRACTICE_AREAS.some((area) => isActive(area.href))
+                  ? "text-gold underline decoration-2 underline-offset-8"
+                  : "text-ink"
+              }`}
             >
               Aree di assistenza
               <ChevronIcon open={dropdownOpen} />
@@ -171,7 +187,7 @@ export function Header() {
                   className="absolute left-0 top-full flex w-64 flex-col gap-5 rounded-lg border border-line bg-cream p-5 pt-6 shadow-xl"
                 >
                   {PRACTICE_AREAS.map((area) => (
-                    <Link key={area.href} href={area.href} className="font-heading text-base font-semibold tracking-wide text-ink hover:text-gold">
+                    <Link key={area.href} href={area.href} className={navLinkClassName(area.href)}>
                       {area.label}
                     </Link>
                   ))}
@@ -181,14 +197,14 @@ export function Header() {
           </div>
 
           {TAIL_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="font-heading text-base font-semibold tracking-wide text-ink hover:text-gold">
+            <Link key={link.href} href={link.href} className={navLinkClassName(link.href)}>
               {link.label}
             </Link>
           ))}
 
           <Link
             href={CONTATTI_LINK.href}
-            className="rounded-md bg-gold px-5 py-2.5 font-heading text-base font-semibold tracking-wide text-cream shadow-md shadow-gold/25 hover:bg-gold-dark"
+            className="bg-gold px-5 py-2.5 font-heading text-base font-semibold tracking-wide text-cream shadow-md shadow-gold/25 hover:bg-gold-dark"
           >
             {CONTATTI_LINK.label}
           </Link>
@@ -230,7 +246,13 @@ export function Header() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.04 }}
               >
-                <Link href={link.href} className="font-heading text-xl font-semibold tracking-wide text-ink" onClick={() => setMobileOpen(false)}>
+                <Link
+                  href={link.href}
+                  className={`font-heading text-xl font-semibold tracking-wide ${
+                    isActive(link.href) ? "text-gold underline decoration-2 underline-offset-8" : "text-ink"
+                  }`}
+                  onClick={() => setMobileOpen(false)}
+                >
                   {link.label}
                 </Link>
               </motion.div>

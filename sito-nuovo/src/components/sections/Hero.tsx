@@ -34,7 +34,7 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className={`font-heading font-semibold leading-tight ${isHome ? "text-4xl md:text-5xl lg:text-6xl" : "text-3xl md:text-4xl"}`}
+        className={`font-heading font-semibold leading-[0.95] ${isHome ? "text-4xl md:text-5xl lg:text-6xl" : "text-3xl md:text-4xl"}`}
       >
         {title}
       </motion.h1>
@@ -58,7 +58,7 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
           {primaryCta && (
             <Link
               href={primaryCta.href}
-              className="rounded-md bg-gold px-7 py-4 font-heading text-base font-semibold tracking-wide text-cream shadow-lg shadow-gold/25 hover:bg-gold-dark"
+              className="bg-gold px-7 py-4 font-heading text-base font-semibold tracking-wide text-cream shadow-lg shadow-gold/25 hover:bg-gold-dark"
             >
               {primaryCta.label}
             </Link>
@@ -66,7 +66,7 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
           {secondaryCta && (
             <Link
               href={secondaryCta.href}
-              className="rounded-md border border-cream/35 px-7 py-4 font-heading text-base font-semibold tracking-wide text-cream hover:border-cream"
+              className="border border-cream/35 px-7 py-4 font-heading text-base font-semibold tracking-wide text-cream hover:border-cream"
             >
               {secondaryCta.label}
             </Link>
@@ -113,21 +113,33 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
               height={480}
               className="relative h-[420px] w-full rounded-lg object-cover shadow-2xl shadow-black/40"
             />
-            <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-lg bg-cream px-5 py-4 shadow-xl shadow-black/25">
-              <Link
-                href="/requisiti-per-accedere/"
-                aria-label="Verifica ora se hai diritto al gratuito patrocinio"
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold transition-transform hover:scale-105"
+            <Link
+              href="/requisiti-per-accedere/"
+              aria-label="Verifica in 2 minuti se hai diritto al gratuito patrocinio"
+              className="absolute -bottom-6 -left-6 block"
+            >
+              <motion.div
+                animate={{
+                  boxShadow: [
+                    "0 20px 40px rgba(0,0,0,0.25)",
+                    "0 20px 46px rgba(171,127,56,0.6)",
+                    "0 20px 40px rgba(0,0,0,0.25)",
+                  ],
+                }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                className="flex items-center gap-3 bg-cream px-5 py-4 transition-transform hover:scale-[1.02]"
               >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="var(--color-cream)" strokeWidth={2.25}>
-                  <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-              <div>
-                <p className="font-heading text-sm font-bold text-navy">Verifica in 2 minuti</p>
-                <p className="text-xs text-navy/60">Nessun costo per la valutazione</p>
-              </div>
-            </div>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="var(--color-cream)" strokeWidth={2.25}>
+                    <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <div>
+                  <p className="font-heading text-sm font-bold text-navy">Verifica in 2 minuti</p>
+                  <p className="text-xs text-navy/60">Nessun costo per la valutazione</p>
+                </div>
+              </motion.div>
+            </Link>
           </motion.div>
         </div>
       ) : (
