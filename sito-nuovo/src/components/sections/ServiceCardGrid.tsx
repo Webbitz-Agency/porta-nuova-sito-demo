@@ -25,6 +25,9 @@ interface ServiceCardGridProps {
   cards: ServiceCard[];
 }
 
+const FLASH_DURATION = 0.6;
+const FLASH_START_DELAY = 0.3;
+
 export function ServiceCardGrid({ cards }: ServiceCardGridProps) {
   return (
     <div className="grid h-full grid-cols-1 gap-6 sm:grid-cols-2">
@@ -39,7 +42,7 @@ export function ServiceCardGrid({ cards }: ServiceCardGridProps) {
               y: 0,
               boxShadow: [
                 "0 0 0 0 rgba(143,106,44,0)",
-                "0 0 0 5px rgba(143,106,44,0.65)",
+                "0 0 0 1.5px rgba(143,106,44,0.45)",
                 "0 0 0 0 rgba(143,106,44,0)",
               ],
             }}
@@ -47,7 +50,11 @@ export function ServiceCardGrid({ cards }: ServiceCardGridProps) {
             transition={{
               opacity: { duration: 0.5, delay: i * 0.08 },
               y: { duration: 0.5, delay: i * 0.08 },
-              boxShadow: { duration: 0.9, delay: 0.5 + i * 0.35, times: [0, 0.4, 1] },
+              boxShadow: {
+                duration: FLASH_DURATION,
+                delay: FLASH_START_DELAY + i * FLASH_DURATION,
+                times: [0, 0.5, 1],
+              },
             }}
             className="h-full rounded-lg"
           >

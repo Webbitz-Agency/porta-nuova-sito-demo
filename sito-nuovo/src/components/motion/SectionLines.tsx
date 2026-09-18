@@ -14,16 +14,18 @@ export function SectionLines() {
       preserveAspectRatio="none"
       fill="none"
     >
+      {/* Sweeps in from off-screen left */}
       <path
         ref={lineTop}
-        d="M-100 480 C 280 420, 620 580, 980 500 S 1500 430, 1760 520"
+        d="M-120 460 C 210 390, 480 570, 800 450 S 1280 380, 1600 500"
         stroke="var(--color-gold-dark)"
         strokeWidth={1.5}
         opacity={0.55}
       />
+      {/* Sweeps in from off-screen right, deliberately different curve so it doesn't read as a mirror of the first */}
       <path
         ref={lineBottom}
-        d="M-80 760 C 320 880, 760 620, 1160 800 S 1620 740, 1780 660"
+        d="M1620 720 C 1280 840, 1040 610, 700 760 S 220 690, -100 630"
         stroke="var(--color-gold-dark)"
         strokeWidth={1.5}
         opacity={0.4}
