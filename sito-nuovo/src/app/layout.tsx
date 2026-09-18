@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Cormorant_SC, Inter } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 
-const fraunces = Fraunces({
+const cormorantSC = Cormorant_SC({
   subsets: ["latin"],
+  weight: ["500", "600", "700"],
   variable: "--font-heading",
   display: "swap",
 });
@@ -25,9 +26,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="it"
-      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
+      className={`${cormorantSC.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className={`${fraunces.variable} ${inter.variable} font-body antialiased`}>
+      <body className={`${cormorantSC.variable} ${inter.variable} font-body antialiased`}>
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>

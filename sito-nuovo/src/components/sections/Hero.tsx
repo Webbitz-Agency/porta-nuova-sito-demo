@@ -58,7 +58,7 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
           {primaryCta && (
             <Link
               href={primaryCta.href}
-              className="rounded-md bg-gold px-7 py-4 text-sm font-semibold text-navy shadow-lg shadow-gold/25 hover:bg-gold-dark"
+              className="rounded-md bg-gold px-7 py-4 font-heading text-base font-semibold tracking-wide text-navy shadow-lg shadow-gold/25 hover:bg-gold-dark"
             >
               {primaryCta.label}
             </Link>
@@ -66,7 +66,7 @@ export function Hero({ variant, eyebrow, title, subtitle, primaryCta, secondaryC
           {secondaryCta && (
             <Link
               href={secondaryCta.href}
-              className="rounded-md border border-cream/35 px-7 py-4 text-sm font-semibold text-cream hover:border-cream"
+              className="rounded-md border border-cream/35 px-7 py-4 font-heading text-base font-semibold tracking-wide text-cream hover:border-cream"
             >
               {secondaryCta.label}
             </Link>

@@ -81,7 +81,7 @@ export function Header() {
 
         <nav className="hidden items-center gap-6 md:flex">
           {TOP_LEVEL_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm text-ink hover:text-gold">
+            <Link key={link.href} href={link.href} className="font-heading text-base font-semibold tracking-wide text-ink hover:text-gold">
               {link.label}
             </Link>
           ))}
@@ -93,7 +93,7 @@ export function Header() {
               aria-haspopup="true"
               aria-controls="aree-dropdown"
               onClick={() => setDropdownOpen((open) => !open)}
-              className="text-sm text-ink hover:text-gold"
+              className="font-heading text-base font-semibold tracking-wide text-ink hover:text-gold"
             >
               Aree di assistenza
             </button>
@@ -108,7 +108,7 @@ export function Header() {
                   className="absolute left-0 top-full mt-2 flex w-56 flex-col gap-2 rounded-lg border border-line bg-cream p-3 shadow-lg"
                 >
                   {PRACTICE_AREAS.map((area) => (
-                    <Link key={area.href} href={area.href} className="text-sm text-ink hover:text-gold">
+                    <Link key={area.href} href={area.href} className="font-heading text-base font-semibold tracking-wide text-ink hover:text-gold">
                       {area.label}
                     </Link>
                   ))}
@@ -118,14 +118,14 @@ export function Header() {
           </div>
 
           {TAIL_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm text-ink hover:text-gold">
+            <Link key={link.href} href={link.href} className="font-heading text-base font-semibold tracking-wide text-ink hover:text-gold">
               {link.label}
             </Link>
           ))}
 
           <Link
             href={CONTATTI_LINK.href}
-            className="rounded-md bg-gold px-5 py-2.5 text-sm font-semibold text-navy shadow-md shadow-gold/25 hover:bg-gold-dark"
+            className="rounded-md bg-gold px-5 py-2.5 font-heading text-base font-semibold tracking-wide text-navy shadow-md shadow-gold/25 hover:bg-gold-dark"
           >
             {CONTATTI_LINK.label}
           </Link>
@@ -167,7 +167,7 @@ export function Header() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.04 }}
               >
-                <Link href={link.href} className="text-lg text-ink" onClick={() => setMobileOpen(false)}>
+                <Link href={link.href} className="font-heading text-xl font-semibold tracking-wide text-ink" onClick={() => setMobileOpen(false)}>
                   {link.label}
                 </Link>
               </motion.div>
