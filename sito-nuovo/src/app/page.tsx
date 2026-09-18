@@ -1,5 +1,4 @@
 import { Hero } from "@/components/sections/Hero";
-import { StatsBlock } from "@/components/sections/StatsBlock";
 import { ServiceCardGrid } from "@/components/sections/ServiceCardGrid";
 import { ImageChecklist } from "@/components/sections/ImageChecklist";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
@@ -32,17 +31,11 @@ export default function HomePage() {
         image={{ src: "/images/hero-justice.jpg", alt: "Bilancia della giustizia" }}
       />
 
-      <section className="bg-navy py-14 text-cream">
-        <div className="mx-auto max-w-4xl px-6">
-          <StatsBlock stats={home.stats} />
-        </div>
-      </section>
-
       <section className="py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-gold">Aree di assistenza</p>
-            <h2 className="mt-3 font-heading text-3xl font-semibold text-navy md:text-4xl">
+            <h2 className="mt-3 font-heading text-5xl font-semibold text-navy md:text-6xl">
               Un supporto legale completo, senza costi se hai diritto
             </h2>
             <p className="mt-4 text-ink/70">{home.intro}</p>
