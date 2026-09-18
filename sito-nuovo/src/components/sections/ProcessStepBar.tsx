@@ -1,6 +1,5 @@
 "use client";
 
-import { Fragment } from "react";
 import { motion } from "motion/react";
 import { AnimatedLine } from "@/components/motion/AnimatedLine";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
@@ -31,10 +30,16 @@ export function ProcessStepBar({ eyebrow, heading, steps }: ProcessStepBarProps)
       </div>
 
       {/* Desktop: horizontal step bar, revealed with a staggered pop-in as it scrolls into view */}
-      <div className="mt-20 hidden lg:flex lg:items-start">
-        {steps.map((step, i) => (
-          <Fragment key={step.number}>
+      <div className="relative mt-20 hidden lg:block">
+        {/* One continuous line running under every circle, left edge to right edge */}
+        <div className="pointer-events-none absolute left-28 right-28 top-8 -translate-y-1/2">
+          <AnimatedLine orientation="horizontal" delay={0.2} />
+        </div>
+
+        <div className="relative z-10 flex items-start justify-between">
+          {steps.map((step, i) => (
             <motion.div
+              key={step.number}
               initial={{ opacity: 0, y: 28, scale: 0.85 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-80px" }}
@@ -49,13 +54,8 @@ export function ProcessStepBar({ eyebrow, heading, steps }: ProcessStepBarProps)
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ink/70">{step.description}</p>
             </motion.div>
-            {i < steps.length - 1 && (
-              <div className="mt-8 flex-1 px-1">
-                <AnimatedLine orientation="horizontal" delay={i * 0.18 + 0.3} />
-              </div>
-            )}
-          </Fragment>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { ProcessStepBar } from "@/components/sections/ProcessStepBar";
 const STEPS = [
   { number: 1, title: "Verifica requisiti", description: "Controlliamo la soglia di reddito." },
   { number: 2, title: "Nomina avvocato", description: "Scegli un avvocato iscritto agli elenchi." },
+  { number: 3, title: "Deposito istanza", description: "Presentiamo l'istanza al Consiglio dell'Ordine." },
 ];
 
 describe("ProcessStepBar", () => {
@@ -17,11 +18,11 @@ describe("ProcessStepBar", () => {
     expect(screen.getAllByText("Nomina avvocato").length).toBeGreaterThanOrEqual(1);
   });
 
-  it("renders a connecting line between steps but not after the last one", () => {
+  it("renders a single continuous connecting line under all the steps, not one per gap", () => {
     const { container } = render(
       <ProcessStepBar eyebrow="Come funziona" heading="Quattro passaggi" steps={STEPS} />
     );
-    // One connecting line for 2 steps.
+    // Exactly one line regardless of step count — it runs the full row, not per-gap segments.
     expect(container.querySelectorAll('svg[data-orientation="horizontal"]').length).toBe(1);
   });
 });
