@@ -40,7 +40,7 @@ export function ImageChecklist({ eyebrow, heading, items, image, callPhone }: Im
           alt={image.alt}
           width={640}
           height={480}
-          className="h-96 w-full rounded-lg object-cover shadow-xl shadow-navy/15"
+          className="aspect-[3/4] w-full rounded-lg object-cover shadow-xl shadow-navy/15"
         />
       </div>
       <div>
@@ -62,7 +62,7 @@ export function ImageChecklist({ eyebrow, heading, items, image, callPhone }: Im
                 </svg>
               </span>
               <div>
-                <p className="font-heading text-base font-bold text-navy">{item.title}</p>
+                <p className="font-heading text-lg font-bold text-navy">{item.title}</p>
                 <p className="mt-1 text-sm leading-relaxed text-ink/70">{item.description}</p>
               </div>
             </motion.div>
