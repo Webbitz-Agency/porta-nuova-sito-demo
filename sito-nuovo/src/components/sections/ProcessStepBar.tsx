@@ -44,7 +44,9 @@ export function ProcessStepBar({ eyebrow, heading, steps }: ProcessStepBarProps)
               <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-navy font-heading text-xl font-bold text-cream ring-4 ring-cream shadow-lg shadow-navy/20">
                 {step.number}
               </span>
-              <h3 className="mt-4 font-heading text-xl font-bold text-navy">{step.title}</h3>
+              <h3 className="mt-4 flex min-h-[76px] items-start font-heading text-xl font-bold leading-tight text-navy">
+                {step.title}
+              </h3>
               <p className="mt-2 text-sm leading-relaxed text-ink/70">{step.description}</p>
             </motion.div>
             {i < steps.length - 1 && (
