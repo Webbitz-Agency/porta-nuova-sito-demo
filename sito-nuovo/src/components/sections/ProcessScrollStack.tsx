@@ -137,7 +137,7 @@ export function ProcessScrollStack({ eyebrow, heading, steps }: ProcessScrollSta
       </div>
 
       {/* Desktop: steps cross-fade/slide in place while the section is pinned */}
-      <div className="relative mt-16 hidden h-[220px] lg:block">
+      <div className="relative mt-16 hidden h-[220px] overflow-hidden lg:block">
         {steps.map((step, i) => (
           <div
             key={step.number}
