@@ -16,7 +16,7 @@ export function SectionLines() {
     >
       <path
         ref={lineTop}
-        d="M-100 140 C 260 40, 680 260, 1080 70 S 1560 30, 1760 150"
+        d="M-100 480 C 280 420, 620 580, 980 500 S 1500 430, 1760 520"
         stroke="var(--color-gold-dark)"
         strokeWidth={1.5}
         opacity={0.55}

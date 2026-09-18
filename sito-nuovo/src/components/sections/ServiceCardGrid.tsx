@@ -27,17 +27,29 @@ interface ServiceCardGridProps {
 
 export function ServiceCardGrid({ cards }: ServiceCardGridProps) {
   return (
-    <div className="flex flex-wrap justify-center gap-6">
+    <div className="grid h-full grid-cols-1 gap-6 sm:grid-cols-2">
       {cards.map((card, i) => {
         const Icon = ICONS[card.icon];
         return (
           <motion.div
             key={card.href}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 24, boxShadow: "0 0 0 0 rgba(143,106,44,0)" }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              boxShadow: [
+                "0 0 0 0 rgba(143,106,44,0)",
+                "0 0 0 5px rgba(143,106,44,0.65)",
+                "0 0 0 0 rgba(143,106,44,0)",
+              ],
+            }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-            className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+            transition={{
+              opacity: { duration: 0.5, delay: i * 0.08 },
+              y: { duration: 0.5, delay: i * 0.08 },
+              boxShadow: { duration: 0.9, delay: 0.5 + i * 0.35, times: [0, 0.4, 1] },
+            }}
+            className="h-full rounded-lg"
           >
             <Link
               href={card.href}

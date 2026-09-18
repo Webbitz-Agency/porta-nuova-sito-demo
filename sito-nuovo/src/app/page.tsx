@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/Hero";
 import { SectionLines } from "@/components/motion/SectionLines";
 import { ServiceCardGrid } from "@/components/sections/ServiceCardGrid";
+import { RequisitiPanel } from "@/components/sections/RequisitiPanel";
 import { ImageChecklist } from "@/components/sections/ImageChecklist";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { CtaBlock } from "@/components/sections/CtaBlock";
@@ -42,8 +43,13 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 text-ink/70">{home.intro}</p>
           </div>
-          <div className="mt-14">
-            <ServiceCardGrid cards={home.services} />
+          <div className="mt-14 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-[1.6fr_1fr]">
+            <ServiceCardGrid cards={home.services.slice(0, 4)} />
+            <RequisitiPanel
+              title={home.services[4].title}
+              description={home.services[4].description}
+              href={home.services[4].href}
+            />
           </div>
         </div>
       </section>
