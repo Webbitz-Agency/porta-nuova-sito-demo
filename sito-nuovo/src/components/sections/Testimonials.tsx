@@ -40,13 +40,14 @@ export function Testimonials({ eyebrow, heading, items }: TestimonialsProps) {
 
   return (
     <div>
-      <div className="mx-auto max-w-xl text-center">
+      <div className="mx-auto max-w-xl px-6 text-center">
         <p className="text-xs font-semibold uppercase tracking-widest text-gold">{eyebrow}</p>
         <h2 className="mt-3 font-heading text-5xl font-semibold text-navy md:text-6xl">{heading}</h2>
       </div>
 
-      <div className="relative mt-14 overflow-hidden">
-        <div className="animate-marquee flex w-max gap-6">
+      {/* Full-bleed: breaks out of the page's centered max-width to reach the viewport edges */}
+      <div className="relative mt-14 w-full overflow-hidden">
+        <div className="animate-marquee flex w-max gap-6 pl-6">
           {track.map((item, i) => (
             <TestimonialCard key={`${item.author}-${i}`} item={item} />
           ))}

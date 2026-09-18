@@ -82,13 +82,11 @@ export default function HomePage() {
       </section>
 
       <section className="bg-beige py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <Testimonials
-            eyebrow="Recensioni"
-            heading="Chi si è affidato a noi lo consiglia"
-            items={testimonials}
-          />
-        </div>
+        <Testimonials
+          eyebrow="Recensioni"
+          heading="Chi si è affidato a noi lo consiglia"
+          items={testimonials}
+        />
       </section>
 
       <section className="px-6 pb-24">
